@@ -19,19 +19,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Reviews
 const reviewsOptions = {
- target: 'http://localhost:3002',
+ target: 'http://3.17.145.71',
  changeOrigin: true
 };
 const reviewsProxy = proxy(reviewsOptions);
 app.use('/api/home/:homeId/reviews', reviewsProxy);
 
-// //Photo Stream
-// const photosOptions = {
-//   target: 'http://localhost:9999',
-//   changeOrigin: true
-// };
-// const photosProxy = proxy(photosOptions);
-// app.use('/api/home/:homeId/photos', photosProxy);
+//Photo Stream
+const photosOptions = {
+  target: 'http://ec2-52-15-165-182.us-east-2.compute.amazonaws.com',
+  changeOrigin: true
+};
+const photosProxy = proxy(photosOptions);
+app.use('/api/home/:homeId/photos', photosProxy);
 
 // //Calendar and Booking
 // const calendarOptions = {
@@ -75,6 +75,15 @@ app.get('/recommendations', (req, res) => {
    res.send(response.data);
  });
  })
+
+ app.get('/booking', (req, res) => {
+  axios.get('http://localhost:3001/recommendations')
+  .then(function(response){
+    console.log(response.data); // ex.: { user: 'Your User'}
+    console.log(response.status); // ex.: 200
+    res.send(response.data);
+  });
+  })
 
 //server
 app.listen(PORT, () => {

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./server.js",
-    "start1": "nodemon ./victoriahu-map/server/index.js"
+    "start": "node ./server.js",
+    "start1": "node ./victoriahu-map/server/index.js",
+    "start2": "node ./Teddy-Reviews/server/index.js"
   },
   "keywords": [],
   "author": "",

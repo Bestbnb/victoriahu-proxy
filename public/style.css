@@ -14,10 +14,26 @@
 
 #map {
   padding-top: 100px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.map {
+  margin-left: 200px;
+}
+
+.recommendations {
+  clear: both;
+}
+
+.booking {
+  display: block;
 }
 
 #reviews {
   padding-top: 500px;
+  margin-right: 550px;
+  margin-left: 225px;
 }
 
 .container {

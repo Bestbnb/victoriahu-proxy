@@ -12,6 +12,14 @@
   display: block;
 } */
 
+/* .page {
+  margin-left: 200px;
+}
+
+.angle-right-icon {
+  margin-left: 200px;
+} */
+
 #map {
   padding-top: 100px;
   margin-left: 25px;
@@ -19,7 +27,11 @@
 }
 
 .map {
-  margin-left: 200px;
+  position: absolute;
+  left: 225px;
+  top: 2100px;
+  padding-right: 400px;
+  margin-bottom: 100px;
 }
 
 .recommendations {

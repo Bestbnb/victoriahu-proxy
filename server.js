@@ -6,6 +6,13 @@ const axios = require('axios');
 
 const PORT = process.env.PORT || 3010;
 
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 app.get('/', function(req, res) {
  res.redirect('/home/1');
 });
@@ -25,13 +32,13 @@ const reviewsOptions = {
 const reviewsProxy = proxy(reviewsOptions);
 app.use('/api/home/:homeId/reviews', reviewsProxy);
 
-// //Photo Stream
-// const photosOptions = {
-//   target: 'http://ec2-52-15-165-182.us-east-2.compute.amazonaws.com:9999',
-//   changeOrigin: true
-// };
-// const photosProxy = proxy(photosOptions);
-// app.use('/api/gallery', photosProxy);
+//Photo Stream
+const photosOptions = {
+  target: 'http://ec2-52-15-165-182.us-east-2.compute.amazonaws.com',
+  changeOrigin: true
+};
+const photosProxy = proxy(photosOptions);
+app.use('/api/gallery', photosProxy);
 
 // //Calendar and Booking
 // const calendarOptions = {
@@ -85,7 +92,7 @@ app.get('/recommendations', (req, res) => {
   });
   })
 
-  app.get('http://ec2-52-15-165-182.us-east-2.compute.amazonaws.com/gallery', (req, res) => {
+  app.get('/gallery', (req, res) => {
     axios.get('http://ec2-52-15-165-182.us-east-2.compute.amazonaws.com/gallery')
     .then(function(response){
       console.log(response.data, "GALLERY ALSKDJLSKDJSA"); // ex.: { user: 'Your User'}

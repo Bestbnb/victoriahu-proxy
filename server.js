@@ -17,6 +17,30 @@ app.get('/', function(req, res) {
  res.redirect('/home/1');
 });
 
+// app.get('/gallery', function(req, res) {
+//   axios
+//     .get("http://ec2-52-15-165-182.us-east-2.compute.amazonaws.com/gallery")
+//     .then(function(response) {
+//       console.log('*********** response.data: ******', response.data);
+//       res.send(response.data);
+//     })
+//     .catch(function(error) {
+//       console.log(error);
+//     });
+// });
+
+app.get('/gallery', function(req, res) {
+  axios
+    .get("http://localhost:9999/gallery")
+    .then(function(response) {
+      console.log('*********** response.data: ******', response.data);
+      res.send(response.data);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+});
+
 app.get('/home/:homeId', function(req, res) {
  const reactPath = path.join(__dirname, './public/index.html');
  res.sendFile(reactPath);
@@ -92,15 +116,16 @@ app.get('/recommendations', (req, res) => {
   });
   })
 
-  app.get('/gallery', (req, res) => {
-    axios.get('http://ec2-52-15-165-182.us-east-2.compute.amazonaws.com/gallery')
-    .then(function(response){
-      console.log(response.data, "GALLERY ALSKDJLSKDJSA"); // ex.: { user: 'Your User'}
-      console.log(response.status); // ex.: 200
-      res.send(response.data);
-    });
-    })
+  // app.get('/gallery', (req, res) => {
+  //   axios.get('http://ec2-52-15-165-182.us-east-2.compute.amazonaws.com/gallery')
+  //   .then(function(response){
+  //     console.log(response.data, "GALLERY ALSKDJLSKDJSA"); // ex.: { user: 'Your User'}
+  //     console.log(response.status); // ex.: 200
+  //     res.send(response.data);
+  //   });
+  //   })
 
+  
 //server
 app.listen(PORT, () => {
  console.log(`server running at: http://localhost:${PORT}`);
